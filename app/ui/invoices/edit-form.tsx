@@ -27,7 +27,7 @@ export default function EditInvoiceForm({
         {/* Customer Name */}
         <div className="mb-4">
           <label htmlFor="customer" className="mb-2 block text-sm font-medium">
-            Choose customer
+            选择客户(Choose customer)
           </label>
           <div className="relative">
             <select
@@ -120,7 +120,7 @@ export default function EditInvoiceForm({
         >
           Cancel
         </Link>
-        <Button type="submit">Edit Invoice</Button>
+        <Button type="submit">编辑发票</Button>
       </div>
     </form>
   );

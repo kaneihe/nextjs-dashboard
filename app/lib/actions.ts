@@ -28,14 +28,22 @@ export async function createInvoice(formData:FormData) {
     const amountInCents = amount * 100;
     const date = new Date().toISOString().split('T')[0];
 
-    await sql `INSERT INTO invoices (customer_id, amount, status, date)
-    VALUES (${customerId}, ${amountInCents}, ${status}, ${date})`;
+    try {
+      await sql `INSERT INTO invoices (customer_id, amount, status, date)
+      VALUES (${customerId}, ${amountInCents}, ${status}, ${date})`;
+    } catch (error) {
+      return {
+        message: '数据库错误：无法创建发票。',
+      }
+    }    
 
+    // 由于您要更新发票路由中显示的数据，因此您希望清除此缓存并向服务器触发新请求。
+    // 您可以使用revalidatePath Next.js 中的函数来执行此操作
     revalidatePath('/dashboard/invoices')
     redirect('/dashboard/invoices')
 }
 
-
+// 编辑更新发票
 export async function updateInvoice(id: string, formData: FormData) {
     const { customerId, amount, status } = UpdateInvoice.parse({
       customerId: formData.get('customerId'),
@@ -45,17 +53,32 @@ export async function updateInvoice(id: string, formData: FormData) {
    
     const amountInCents = amount * 100;
    
-    await sql`
+    try {
+      await sql`
       UPDATE invoices
       SET customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
       WHERE id = ${id}
     `;
+    } catch (error) {
+      return {
+        message:'数据库错误：无法更新发票。',
+      }
+    }    
    
     revalidatePath('/dashboard/invoices');
     redirect('/dashboard/invoices');
   }
 
+  // 删除发票
   export async function deleteInvoice(id: string) {
-    await sql`DELETE FROM invoices WHERE id = ${id}`;
+    // throw new Error('删除发票失败');
+    try {
+      await sql`DELETE FROM invoices WHERE id = ${id}`;
+    } catch (error) {
+      return {
+        message: '数据库错误：无法删除发票。',
+      }
+    }
+    
     revalidatePath('/dashboard/invoices');
   }

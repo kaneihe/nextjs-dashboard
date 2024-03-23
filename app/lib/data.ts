@@ -10,6 +10,7 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 import { unstable_noStore as noStore } from 'next/cache';
+import { error } from 'console';
 
 export async function fetchRevenue() {
   // 此处添加 noStore() 以防止响应被缓存。
@@ -173,6 +174,7 @@ export async function fetchInvoiceById(id: string) {
       amount: invoice.amount / 100,
     }));
 
+    // console.error('数据库错误：', error)
     return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);

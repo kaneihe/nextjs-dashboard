@@ -10,11 +10,7 @@ export default async function Page() {
       <Breadcrumbs
         breadcrumbs={[
           { label: '发票', href: '/dashboard/invoices' },
-          {
-            label: '创建发票(Create Invoice)',
-            href: '/dashboard/invoices/create',
-            active: true,
-          },
+          { label: '创建发票(Create Invoice)', href: '/dashboard/invoices/create', active: true},
         ]}
       />
       <Form customers={customers} />

@@ -2,6 +2,7 @@ import { clsx } from 'clsx';
 import Link from 'next/link';
 import { lusitana } from '@/app/ui/fonts';
 
+// 面包屑（创建页面标签，URL等）
 interface Breadcrumb {
   label: string;
   href: string;
