@@ -120,21 +120,32 @@ export async function deleteInvoice(id: string) {
   revalidatePath('/dashboard/invoices');
 }
 
+/**
+ * 异步函数：尝试使用表单数据进行用户认证。
+ * 
+ * @param prevState - 上一次的认证状态，可能是字符串或未定义。
+ * @param formData - 包含认证所需信息的表单数据。
+ * @returns 当认证失败时，返回错误消息字符串；否则，不返回值。
+ */
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
 ) {
   try {
+    // 尝试使用提供的表单数据进行登录。
     await signIn('credentials', formData);
   } catch (error) {
+    // 如果错误是AuthError类型的实例，进行特定处理。
     if (error instanceof AuthError) {
       switch (error.type) {
+        // 针对特定的认证错误类型返回相应的错误消息。
         case 'CredentialsSignin':
           return 'Invalid credentials.';
         default:
           return 'Something went wrong.';
       }
     }
+    // 如果错误不是AuthError类型，重新抛出错误。
     throw error;
   }
 }
