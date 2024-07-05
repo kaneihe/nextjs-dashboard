@@ -15,10 +15,12 @@ import { useFormState } from 'react-dom';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
   const initialState = {message: null, errors: {}}
-  // [state, dispatch]- 表单状态和调度函数
+  // [state, dispatch]- 表单状态和调度函数(执行插入操作)
   const [state, dispatch] = useFormState(createInvoice, initialState)
   console.log('dispatch = ', dispatch)
-
+  // React Server Actions 允许您在服务器上直接运行异步代码。它们消除了通过创建 API 改变数据的方式
+  // 在 React 中，action 属性被视为一个特殊的 prop - 这意味着 React 在其之上构建，以允许调用 actions。
+  // 在幕后，Server Actions 创建一个 POST API 端点。这就是在使用 Server Actions 时为什么不需要手动创建 API 端点的原因。
   return (
     <form action={dispatch}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">

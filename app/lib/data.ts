@@ -184,19 +184,24 @@ export async function fetchInvoiceById(id: string) {
   }
 }
 
+/**
+ * 异步获取所有客户的信息。
+ * 
+ * 本函数通过执行SQL查询从数据库中获取所有客户的信息。查询结果将按照客户名称的字母顺序排序。
+ * 如果查询过程中发生错误，函数将打印错误信息到控制台，并抛出一个表示获取客户信息失败的错误。
+ * 
+ * @returns {Promise<Customer[]>} 返回一个包含所有客户信息的数组。每个客户信息包括id和name两个字段。
+ */
 export async function fetchCustomers() {
   try {
-    const data = await sql<CustomerField>`
-      SELECT
-        id,
-        name
-      FROM customers
-      ORDER BY name ASC
-    `;
+    // 使用模板字符串执行SQL查询，获取客户的信息。
+    const data = await sql<CustomerField>`SELECT id, name FROM customers ORDER BY name ASC`;
 
+    // 从查询结果中提取客户信息数组。
     const customers = data.rows;
     return customers;
   } catch (err) {
+    // 在发生错误时，打印错误信息并抛出一个新的错误。
     console.error('Database Error:', err);
     throw new Error('Failed to fetch all customers.');
   }
