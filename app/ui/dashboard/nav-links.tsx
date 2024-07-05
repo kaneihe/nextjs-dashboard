@@ -19,7 +19,6 @@ const links = [
 
 export default function NavLinks() {
   const pathname = usePathname();
-  console.log(pathname)
   // 在链接处于活动状态时有条件地应用类名称。
   // 当匹配时，链接应显示为蓝色文本和浅蓝色背景。link.hrefpathname
   return (

@@ -1,4 +1,4 @@
-// Loading animation
+// 加载动画
 const shimmer =
   'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent';
 
@@ -29,6 +29,7 @@ export function CardsSkeleton() {
   );
 }
 
+// 收入图表骨架
 export function RevenueChartSkeleton() {
   return (
     <div className={`${shimmer} relative w-full overflow-hidden md:col-span-4`}>
@@ -44,6 +45,7 @@ export function RevenueChartSkeleton() {
   );
 }
 
+// 发票骨架
 export function InvoiceSkeleton() {
   return (
     <div className="flex flex-row items-center justify-between border-b border-gray-100 py-4">
@@ -59,6 +61,7 @@ export function InvoiceSkeleton() {
   );
 }
 
+// 最近发票骨架
 export function LatestInvoicesSkeleton() {
   return (
     <div
@@ -82,6 +85,7 @@ export function LatestInvoicesSkeleton() {
   );
 }
 
+// Dashboard 骨架
 export default function DashboardSkeleton() {
   return (
     <>
@@ -102,6 +106,7 @@ export default function DashboardSkeleton() {
   );
 }
 
+// 表格骨架
 export function TableRowSkeleton() {
   return (
     <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
@@ -139,6 +144,7 @@ export function TableRowSkeleton() {
   );
 }
 
+// 发票移动骨架
 export function InvoicesMobileSkeleton() {
   return (
     <div className="mb-2 w-full rounded-md bg-white p-4">
@@ -163,6 +169,7 @@ export function InvoicesMobileSkeleton() {
   );
 }
 
+// 发票表格骨架
 export function InvoicesTableSkeleton() {
   return (
     <div className="mt-6 flow-root">

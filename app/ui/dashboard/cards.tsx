@@ -18,16 +18,11 @@ export default async function CardWrapper() {
   const {numberOfCustomers, numberOfInvoices, totalPaidInvoices, totalPendingInvoices} = await fetchCardData();
   return (
     <>
-      {/* NOTE: comment in this code when you get to this point in the course */}
-
+      {/* NOTE: 当你到达课程的这个阶段时，请对这段代码进行评论 */}
       <Card title="Collected" value={totalPaidInvoices} type="collected" />
-      <Card title="Pending" value={totalPendingInvoices} type="pending" />
-      <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
-      <Card
-        title="Total Customers"
-        value={numberOfCustomers}
-        type="customers"
-      />
+      <Card title="待办的" value={totalPendingInvoices} type="pending" />
+      <Card title="发票总数" value={numberOfInvoices} type="invoices" />
+      <Card title="客户总数" value={numberOfCustomers} type="customers" />
     </>
   );
 }
