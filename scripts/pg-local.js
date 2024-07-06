@@ -1,6 +1,6 @@
 const { Client } = require('pg');
  
-const client = new Client(process.env.POSTGRES_URL || "postgres://postgres:690123@127.0.0.1:5432/postgres");
+const client = new Client(process.env.POSTGRES_URL || "postgres://postgres:password@127.0.0.1:5432/postgres");
  
 exports.getClient = async () => {
    if (!client._connected) {
